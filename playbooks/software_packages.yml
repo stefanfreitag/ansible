@@ -1,0 +1,20 @@
+---
+- hosts: localhost
+  name: test
+  become: true
+  tasks:
+    - name: Install aptitude
+      apt:
+        name: aptitude
+        state: latest
+        update_cache: true
+    - name: Update apt and install required system packages
+      apt:
+        pkg:
+          - curl
+          - git
+          - mc
+          - vim
+          - zsh
+        state: latest
+        update_cache: true
