@@ -1,0 +1,8 @@
+{
+    "workbench.colorCustomizations": {
+        "activityBar.background": "#043617",
+        "titleBar.activeBackground": "#054B20",
+        "titleBar.activeForeground": "#EFFEF5"
+    },
+    "ansible.python.interpreterPath": "/bin/python3"
+}

@@ -1,0 +1,26 @@
+---
+- name: Install packages on Kubuntu
+  hosts: kubuntu
+  become: true
+  vars:
+    kubuntu_packages:
+      - curl
+      - git
+      - mc
+      - vim
+      - zsh
+  tasks:
+    - name: Ensure APT cache is up to date
+      ansible.builtin.apt:
+        update_cache: true
+
+    - name: Install aptitude
+      ansible.builtin.apt:
+        name: aptitude
+        state: present
+
+    - name: Install packages on Kubuntu
+      ansible.builtin.apt:
+        name: "{{ kubuntu_packages }}"
+        state: present
+        ansible.builtin.apt:

@@ -1,0 +1,33 @@
+---
+---
+- name: Install packages on Fedora 42
+  hosts: fedora42
+  become: true
+  ---
+  - name: Install packages on Fedora 42
+    hosts: fedora42
+    become: true
+    vars:
+      fedora_packages:
+        - dnf-plugins-core
+        ---
+        - name: Install packages on Fedora 42
+          hosts: fedora42
+          become: true
+          vars:
+            fedora_packages:
+              - dnf-plugins-core
+              - curl
+              - git
+              - mc
+              - vim-enhanced
+              - zsh
+          tasks:
+            - name: Update DNF cache
+              ansible.builtin.dnf:
+                update_cache: true
+
+            - name: Install packages on Fedora 42
+              ansible.builtin.dnf:
+                name: "{{ fedora_packages }}"
+                state: present
