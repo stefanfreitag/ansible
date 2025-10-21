@@ -1,33 +1,35 @@
 ---
----
 - name: Install packages on Fedora 42
-  hosts: fedora42
+  hosts: fedora
   become: true
-  ---
-  - name: Install packages on Fedora 42
-    hosts: fedora42
-    become: true
-    vars:
-      fedora_packages:
+  roles:
+    - ecgalaxy.vscode
+  vars:
+    fedora_packages:
         - dnf-plugins-core
-        ---
-        - name: Install packages on Fedora 42
-          hosts: fedora42
-          become: true
-          vars:
-            fedora_packages:
-              - dnf-plugins-core
-              - curl
-              - git
-              - mc
-              - vim-enhanced
-              - zsh
-          tasks:
-            - name: Update DNF cache
-              ansible.builtin.dnf:
-                update_cache: true
+        - curl
+        - docker-cli
+        - docker-compose
+        - git
+        - golang
+        - keepass
+        - kmymoney
+        - mc
+        - pre-commit
+        - spectacle
+        - sshpass
+        - thunderbird
+        - vim-enhanced
+        - zsh
+    vscode_extension:
+        - ms-python.python
+        - ms-vscode.powershell
+  tasks:
+    - name: Update DNF cache
+      ansible.builtin.dnf:
+        update_cache: true
 
-            - name: Install packages on Fedora 42
-              ansible.builtin.dnf:
-                name: "{{ fedora_packages }}"
-                state: present
+    - name: Install packages on Fedora 42
+      ansible.builtin.dnf:
+        name: "{{ fedora_packages }}"
+        state: present
